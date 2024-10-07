@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 from users.models import User
 
@@ -20,6 +21,17 @@ class Video(models.Model):
     file = models.FileField(upload_to='videos/', blank=False, null=False)
     views = models.PositiveIntegerField(default=0)
     uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            original_slug = self.slug
+            counter = 1
+            while Video.objects.filter(slug=self.slug).exists():
+                self.slug = f"{original_slug}-{counter}"
+                counter += 1
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

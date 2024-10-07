@@ -1,8 +1,9 @@
 from PIL import Image
-from enum import unique
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+
 
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars/users', null=True, blank=True)

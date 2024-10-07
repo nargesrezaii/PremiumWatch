@@ -22,7 +22,7 @@
             <tbody>
                 {% for video in videos %}
                 <tr>
-                    <td>{{ video.title }}</td>
+                    <td><a href="{% url 'video_detail' video.slug %}">{{ video.title }}</a></td>
                     <td>{{ video.description }}</td>
                     <td>{{ video.time_slot.thumbnail }}</td>
                     <td>{{ video.views }}</td>
