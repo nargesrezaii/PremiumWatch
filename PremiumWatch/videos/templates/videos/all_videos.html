@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Videos{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">All Of The Videos</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Thumbnail</th>
+                    <th>Views</th>
+                    <th>Uploaded_by</th>
+                    <th>Created_at</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for video in videos %}
+                <tr>
+                    <td>{{ video.title }}</td>
+                    <td>{{ video.description }}</td>
+                    <td>{{ video.time_slot.thumbnail }}</td>
+                    <td>{{ video.views }}</td>
+                    <td>{{ video.uploaded_by }}</td>
+                    <td>{{ video.created_at|date:"F j, Y, g:i a" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No videos have been uploaded yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
