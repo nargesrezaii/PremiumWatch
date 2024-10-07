@@ -17,7 +17,7 @@ class Video(models.Model):
     thumbnail = models.ImageField(upload_to='thumbnails/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     # add these fields to ERD
-    file = models.FileField(upload_to='videos/')
+    file = models.FileField(upload_to='videos/', blank=False, null=False)
     views = models.PositiveIntegerField(default=0)
     uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
