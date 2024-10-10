@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import related
 from django.utils.text import slugify
 
 from users.models import User
@@ -20,7 +21,7 @@ class Video(models.Model):
     # add these fields to ERD
     file = models.FileField(upload_to='videos/', blank=False, null=False)
     views = models.PositiveIntegerField(default=0)
-    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='videos')
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
