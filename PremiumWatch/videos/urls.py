@@ -1,9 +1,9 @@
 from django.urls import path
 
-from videos.views import VideoUploadView, VideosList, VideoDetailView
+from videos import views
 
 urlpatterns = [
-    path('', VideosList.as_view(), name='show-videos'),   
-    path('upload/', VideoUploadView.as_view(), name='upload'),
-    path('<slug:slug>/', VideoDetailView.as_view(), name='video_detail'),
+    path('', views.VideosListCreateAPIView.as_view(), name='videos-list-create'),   
+    path('<slug:slug>', views.VideoDetailAPIView.as_view(), name='video-detail'),
+    path('categories/', views.CategoryListView.as_view(), name='category-list'),
 ]
