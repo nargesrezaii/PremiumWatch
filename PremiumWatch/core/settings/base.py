@@ -12,8 +12,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
 
+    'home.apps.HomeConfig',
     'users.apps.UsersConfig',
     'videos.apps.VideosConfig',
+    'subscription.apps.SubscriptionConfig', 
 ]
 
 MIDDLEWARE = [
@@ -95,5 +97,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ),
 }

@@ -1,8 +1,10 @@
+from email.policy import default
 from django.db import models
 from django.db.models.fields import related
 from django.utils.text import slugify
 
 from users.models import User
+from subscription.models import SubscriptionType
 
 
 class Category(models.Model):
@@ -23,6 +25,7 @@ class Video(models.Model):
     views = models.PositiveIntegerField(default=0)
     uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='videos')
     slug = models.SlugField(unique=True, blank=True)
+    required_subscription = models.ForeignKey(SubscriptionType, on_delete=models.CASCADE, default=1)
 
     def save(self, *args, **kwargs):
         if not self.slug:

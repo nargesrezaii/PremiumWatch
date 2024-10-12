@@ -7,11 +7,11 @@ from videos.models import Video
 
 
 class UserSerializer(serializers.ModelSerializer):
-    videos = serializers.PrimaryKeyRelatedField(many=True, queryset=Video.objects.all())
+    videos = serializers.PrimaryKeyRelatedField(many=True, queryset=Video.objects.all(), required=False)
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'first_name', 'last_name', 'national_id',
+        fields = ['id', 'username', 'password', 'first_name', 'last_name', 'national_id',
                   'phone_number', 'email', 'birthdate', 'videos']
         
 
